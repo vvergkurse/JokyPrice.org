@@ -98,35 +98,19 @@
 
     <script>
         
-    const products = [
-        { id:1, name:"Железные блоки x64", price:1, category:"Строительство", image:"https://ru.minecraft.wiki/images/Железный_блок_JE4_BE3.png?41bce" },
-        { id:2, name:"Смолянные блоки x128", price:1, category:"Строительство", image:"https://minecraft.wiki/images/Block_of_Resin_JE1_BE1.png?e9586" },
-        { id:3, name:"Проворство III", price:24, category:"Зачарования", image:"https://minecraft.wiki/images/Netherite_Boots_%28item%29_BE1.png?b8363&format=original"}
-    ];
-    
-    let currentCategory = 'Все';
-    
-    function filterByCategory(category) {
-        currentCategory = category;
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event.target.classList.add('active');
-        renderProducts();
-    }
-
-        let cart = [];
-
-function renderProducts() {
+function filterProducts() {
+    const filterValue = document.getElementById('filterInput').value.toLowerCase();
     const container = document.getElementById('products');
     container.innerHTML = '';
     
-    const filtered = currentCategory === 'Все' 
-        ? products 
-        : products.filter(p => p.category === currentCategory);
+    // Фильтруем товары по названию или категории
+    const filtered = products.filter(p => 
+        p.name.toLowerCase().includes(filterValue) || 
+        p.category.toLowerCase().includes(filterValue)
+    );
     
     if (filtered.length === 0) {
-        container.innerHTML = '<div style="color:#64748b; padding:40px; text-align:center;">В этой категории нет товаров</div>';
+        container.innerHTML = '<div style="color:#64748b; padding:40px; text-align:center;">Товары не найдены 😞</div>';
         return;
     }
     
@@ -150,6 +134,13 @@ function renderProducts() {
         container.appendChild(card);
     });
 }
+
+// Добавь обработчик события для поиска в реальном времени
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('filterInput').addEventListener('keyup', filterProducts);
+    renderProducts();
+    renderCart();
+});
 
         function addToCart(i) {
             const product = products[i];
