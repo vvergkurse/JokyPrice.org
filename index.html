@@ -33,11 +33,11 @@
 
     <div class="main-container">
         
-<div class="categories-filter" style="margin-bottom:32px; display:flex; gap:12px; flex-wrap:wrap;">
-    <button onclick="filterByCategory('Все')" class="category-btn active">Все товары</button>
-    <button onclick="filterByCategory('Строительство')" class="category-btn">🏗️ Строительство</button>
-    <button onclick="filterByCategory('Зачарования')" class="category-btn">✨ Зачарования</button>
+<div class="filter-container">
+    <input type="text" id="filterInput" class="filter-input" placeholder="🔍 Поиск товара по названию или категории...">
 </div>
+
+<div id="products"></div>
 
         <div id="cart">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
