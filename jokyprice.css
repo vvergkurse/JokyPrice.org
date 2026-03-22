@@ -153,3 +153,34 @@ label { display:block; margin-bottom:8px; font-size:14px; color:#94a3b8; }
 footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
 
 @keyframes pulse { 0%,100% {opacity:1} 50% {opacity:0.4} }
+
+/* Категории */
+.categories-filter {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+.category-btn {
+    padding: 10px 20px;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    border-color: #00ff9d;
+    color: #00ff9d;
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: #00ff9d;
+    color: #000;
+    border-color: #00ff9d;
+}
