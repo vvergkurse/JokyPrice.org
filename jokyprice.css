@@ -1,4 +1,7 @@
-:root { --neon-green: #00ff9d; }
+:root { 
+    --neon-blue: #00d4ff;
+    --neon-red: #ff0055;
+}
 
 * { margin:0; padding:0; box-sizing:border-box; }
 
