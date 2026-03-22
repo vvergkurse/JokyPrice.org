@@ -1,1 +1,0 @@
-# JokyPrice.org
