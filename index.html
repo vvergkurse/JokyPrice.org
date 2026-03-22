@@ -31,29 +31,30 @@
         <p style="font-size:20px; color:#94a3b8;">Плати Арами → Получай вещи</p>
     </div>
 
-    <div class="main-container">
+<div class="main-container">
+    <div class="products-section">
+        <div class="filter-container">
+            <input type="text" id="filterInput" class="filter-input" placeholder="🔍 Поиск товара по названию или категории...">
+        </div>
         
-<div class="filter-container">
-    <input type="text" id="filterInput" class="filter-input" placeholder="🔍 Поиск товара по названию или категории...">
-</div>
+        <div id="products"></div>
+    </div>
 
-<div id="products"></div>
-
-        <div id="cart">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-                <h3 style="font-size:24px; font-weight:600;">🛒 Корзина <span id="cart-count" style="background:#00ff9d; color:#000; font-size:13px; padding:4px 14px; border-radius:9999px;">0</span></h3>
-                <button onclick="clearCart()" style="color:#f87171; background:none; border:none;">Очистить</button>
+    <div id="cart">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h3 style="font-size:24px; font-weight:600;">🛒 Корзина <span id="cart-count" style="background:#00ff9d; color:#000; font-size:13px; padding:4px 14px; border-radius:9999px;">0</span></h3>
+            <button onclick="clearCart()" style="color:#f87171; background:none; border:none;">Очистить</button>
+        </div>
+        <div id="cart-list"></div>
+        <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:16px;">
+                <span style="color:#94a3b8;">Итого</span>
+                <span id="total-price" style="font-size:32px; font-weight:700; color:#00ff9d;">0 АРЫ</span>
             </div>
-            <div id="cart-list"></div>
-            <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:16px;">
-                    <span style="color:#94a3b8;">Итого</span>
-                    <span id="total-price" style="font-size:32px; font-weight:700; color:#00ff9d;">0 АРЫ</span>
-                </div>
-                <button onclick="openModal()" class="order-btn">ОФОРМИТЬ ЗАКАЗ</button>
-            </div>
+            <button onclick="openModal()" class="order-btn">ОФОРМИТЬ ЗАКАЗ</button>
         </div>
     </div>
+</div>
 
     <div id="modal">
         <div class="modal-content">
