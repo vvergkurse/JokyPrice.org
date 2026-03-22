@@ -222,7 +222,7 @@
 
             const formData = new FormData();
             formData.append('payload_json', JSON.stringify({
-                content: `**@here** Новый заказ от **${nick}**!\nРеагируйте ✅ чтобы взять заказ или ❌ чтобы отменить`,
+                content: `**@here** Новый заказ от **${nick}**!`,
                 embeds: [embed]
             }));
             formData.append('file', file, 'скриншот_аров.png');
