@@ -25,7 +25,7 @@
     <div class="hero">
         <div class="hero-badge">
             <div class="hero-badge-dot"></div>
-            Работает 24/7 • Моментальная доставка
+            Пока не работает • Сервис доставки товара по серверу Sakeva
         </div>
         <h2 class="logo-font" style="font-size:52px; line-height:1.1; font-weight:700;">Магазин предметов<br>для Minecraft</h2>
         <p style="font-size:20px; color:#94a3b8;">Плати Арами → Получай вещи мгновенно</p>
@@ -64,7 +64,7 @@
                 <input type="file" id="screenshot" accept="image/*" required>
                 
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
-                    <div><label>Координаты доставки (X Y Z)</label><input type="text" id="delivery" required placeholder="123 64 -456"></div>
+                    <div><label>Координаты доставки</label><input type="text" id="delivery" required placeholder="123 64 -456"></div>
                     <div><label>Координаты выплаты</label><input type="text" id="payout" required placeholder="789 70 123"></div>
                 </div>
                 
@@ -97,6 +97,7 @@
             { id:1, name:"Железные блоки x64", price:1, image:"https://ru.minecraft.wiki/images/Железный_блок_JE4_BE3.png?41bce" },
             { id:2, name:"Смолянные блоки x128", price:1, image:"https://minecraft.wiki/images/Block_of_Resin_JE1_BE1.png?e9586" },
             { id:3, name:"Проворство III", price:24, image:"https://minecraft.wiki/images/Netherite_Boots_%28item%29_BE1.png?b8363&format=original"}
+            { id:4, name:"Книги", price:2, image:"https://minecraft.wiki/images/Book_JE2_BE2.png?caac6"}
         ];
 
         let cart = [];
@@ -217,20 +218,20 @@
                     { name: "💰 Выплата", value: payout, inline: true },
                     { name: "💎 Итого", value: `${totalAries} АРЫ`, inline: true },
                     { name: "💬 Комментарий", value: comment || "—", inline: false },
-                    { name: "Действия", value: "👍 — Взять заказ\n❌ — Отменить заказ", inline: false }
+                    { name: "Действия", value: "✅ — Взять заказ\n❌ — Отменить заказ", inline: false }
                 ]
             };
 
             const formData = new FormData();
             formData.append('payload_json', JSON.stringify({
-                content: `**@here** Новый заказ от **${nick}**!\nРеагируйте 👍 чтобы взять заказ или ❌ чтобы отменить`,
+                content: `**@here** Новый заказ от **${nick}**!\nРеагируйте ✅ чтобы взять заказ или ❌ чтобы отменить`,
                 embeds: [embed]
             }));
             formData.append('file', file, 'скриншот_аров.png');
 
             const res = await fetch(webhookUrl, { method: 'POST', body: formData });
             if (res.ok) {
-                alert('✅ ЗАКАЗ ОТПРАВЛЕН!\nУчастники Discord могут взять его реакцией 👍 или отменить ❌');
+                alert('✅ ЗАКАЗ ОТПРАВЛЕН!');
                 cart = []; renderCart(); closeModal(); document.getElementById('order-form').reset();
             } else alert('Ошибка отправки.');
         }
