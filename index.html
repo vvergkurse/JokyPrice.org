@@ -32,7 +32,12 @@
     </div>
 
     <div class="main-container">
-        <div id="products"></div>
+        
+<div class="categories-filter" style="margin-bottom:32px; display:flex; gap:12px; flex-wrap:wrap;">
+    <button onclick="filterByCategory('Все')" class="category-btn active">Все товары</button>
+    <button onclick="filterByCategory('Строительство')" class="category-btn">🏗️ Строительство</button>
+    <button onclick="filterByCategory('Зачарования')" class="category-btn">✨ Зачарования</button>
+</div>
 
         <div id="cart">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
@@ -92,36 +97,59 @@
     </footer>
 
     <script>
-        const products = [
-            { id:1, name:"Железные блоки x64", price:1, image:"https://ru.minecraft.wiki/images/Железный_блок_JE4_BE3.png?41bce" },
-            { id:2, name:"Смолянные блоки x128", price:1, image:"https://minecraft.wiki/images/Block_of_Resin_JE1_BE1.png?e9586" },
-            { id:3, name:"Проворство III", price:24, image:"https://minecraft.wiki/images/Netherite_Boots_%28item%29_BE1.png?b8363&format=original"}
-        ];
+        
+    const products = [
+        { id:1, name:"Железные блоки x64", price:1, category:"Строительство", image:"https://ru.minecraft.wiki/images/Железный_блок_JE4_BE3.png?41bce" },
+        { id:2, name:"Смолянные блоки x128", price:1, category:"Строительство", image:"https://minecraft.wiki/images/Block_of_Resin_JE1_BE1.png?e9586" },
+        { id:3, name:"Проворство III", price:24, category:"Зачарования", image:"https://minecraft.wiki/images/Netherite_Boots_%28item%29_BE1.png?b8363&format=original"}
+    ];
+    
+    let currentCategory = 'Все';
+    
+    function filterByCategory(category) {
+        currentCategory = category;
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        renderProducts();
+    }
 
         let cart = [];
 
-        function renderProducts() {
-            const container = document.getElementById('products');
-            container.innerHTML = '';
-            products.forEach((p, i) => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-image">
-                        <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300x220/111827/00ff9d?text=${encodeURIComponent(p.name)}'">
-                    </div>
-                    <div class="product-info">
-                        <h3>${p.name}</h3>
-                        <div style="display:flex;justify-content:space-between;align-items:baseline;">
-                            <span class="price">${p.price}</span>
-                            <span style="color:#64748b;font-size:14px;">АРЫ</span>
-                        </div>
-                        <button onclick="addToCart(${i})" class="add-btn">Добавить в корзину</button>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
+function renderProducts() {
+    const container = document.getElementById('products');
+    container.innerHTML = '';
+    
+    const filtered = currentCategory === 'Все' 
+        ? products 
+        : products.filter(p => p.category === currentCategory);
+    
+    if (filtered.length === 0) {
+        container.innerHTML = '<div style="color:#64748b; padding:40px; text-align:center;">В этой категории нет товаров</div>';
+        return;
+    }
+    
+    filtered.forEach((p, i) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+            <div class="product-image">
+                <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300x220/111827/00ff9d?text=${encodeURIComponent(p.name)}'">
+            </div>
+            <div class="product-info">
+                <div style="font-size:12px; color:#00ff9d; margin-bottom:8px;">${p.category}</div>
+                <h3>${p.name}</h3>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                    <span class="price">${p.price}</span>
+                    <span style="color:#64748b;font-size:14px;">АРЫ</span>
+                </div>
+                <button onclick="addToCart(${i})" class="add-btn">Добавить в корзину</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
 
         function addToCart(i) {
             const product = products[i];
