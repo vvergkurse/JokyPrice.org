@@ -208,3 +208,208 @@ footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
 .filter-input::placeholder {
     color: #64748b;
 }
+
+/* ==================== АНИМАЦИИ ==================== */
+
+/* Слайд вверх */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Плавное появление */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Пульсирование */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* Масштабирование при появлении */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Сияние */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.8), 0 0 50px rgba(255, 0, 85, 0.4);
+    }
+}
+
+/* Подвижные звёзды */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Вибрация при наведении */
+@keyframes wiggle {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(1deg);
+    }
+    75% {
+        transform: rotate(-1deg);
+    }
+}
+
+/* ==================== ПРИМЕНЕНИЕ АНИМАЦИЙ ==================== */
+
+/* Шапка */
+.hero-banner {
+    margin-bottom: 30px;
+    animation: slideUp 1s ease-out;
+}
+
+.banner-img {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3), 0 0 40px rgba(255, 0, 85, 0.2);
+    animation: glow 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.banner-img:hover {
+    transform: scale(1.02);
+}
+
+/* Бэйдж с анимацией */
+.hero-badge {
+    animation: slideUp 1s ease-out 0.2s both;
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Карточки товаров - появление */
+.product-card {
+    animation: scaleIn 0.5s ease-out;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.05s; }
+.product-card:nth-child(2) { animation-delay: 0.1s; }
+.product-card:nth-child(3) { animation-delay: 0.15s; }
+.product-card:nth-child(4) { animation-delay: 0.2s; }
+.product-card:nth-child(5) { animation-delay: 0.25s; }
+.product-card:nth-child(6) { animation-delay: 0.3s; }
+.product-card:nth-child(7) { animation-delay: 0.35s; }
+.product-card:nth-child(8) { animation-delay: 0.4s; }
+
+/* Плавное появление при добавлении в корзину */
+.cart-item {
+    animation: slideUp 0.3s ease-out;
+}
+
+/* Кнопка с эффектом при нажатии */
+.add-btn {
+    transition: all 0.3s ease;
+}
+
+.add-btn:active {
+    transform: scale(0.98);
+    animation: wiggle 0.3s ease;
+}
+
+/* Фильтр */
+.filter-input {
+    animation: slideUp 0.8s ease-out;
+}
+
+/* Заголовок */
+h1 {
+    animation: slideUp 1s ease-out;
+}
+
+h3 {
+    animation: slideUp 0.6s ease-out;
+}
+
+/* Price с свечением */
+.price {
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .price {
+    animation: glow 1s ease-in-out infinite;
+}
+
+/* Модальное окно */
+#modal {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    animation: scaleIn 0.4s ease-out;
+}
+
+/* Корзина */
+#cart {
+    animation: slideUp 1.2s ease-out;
+}
+
+/* Пульс при обновлении корзины */
+@keyframes cartPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#cart-count {
+    animation: cartPulse 0.6s ease-out;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    .banner-img {
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    .product-card {
+        animation-duration: 0.3s;
+    }
+}
