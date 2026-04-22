@@ -6,7 +6,7 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-    background: linear-gradient(135deg, #1a1a1a 0%, #0000FF 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #FFFFFF 100%);
     color: #e0f2ff;
     font-family: 'Inter', system_ui, sans-serif;
     min-height: 100vh;
