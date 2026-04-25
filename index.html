@@ -1,59 +1,56 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JokyPrice — Minecraft Shop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="jokyprice.css">
-    <link rel="icon" href="type="image/png" type="image/png">
 </head>
 <body>
-    <!-- === ВЕРХНЯЯ ЧАСТЬ — ИЗОБРАЖЕНИЕ ИЗ ПАПКИ images === -->
-    <div class="top-header-image">
-        <img src="images/remove-photos-ai-expanded (4).png" 
-             alt="JokyPrice" 
-             class="header-img">
-    </div>
-    
-<div class="hero">
-    <div class="hero-badge animate-pulse">
-        <div class="hero-badge-dot"></div>
-        Пока не работает • Сервис доставки товара по серверу Sakeva
-    </div>
-    <p style="font-size:20px; color:#94a3b8; margin-top: 20px; animation: slideUp 1s ease-out;">Плати Арами → Получай вещи</p>
-</div>
-
-<div class="main-container">
-    <div class="products-section">
-        <div class="filter-container">
-            <input type="text" id="filterInput" class="filter-input" placeholder="🔍 Поиск товара по названию или категории...">
-        </div>
-        
-        <div id="products"></div>
+    <!-- КНОПКА ГЛАВНОЙ СТРАНИЦЫ -->
+    <div class="top-header">
+        <button onclick="window.location.href='index.html'" class="home-btn">🏠 JokyPrice</button>
     </div>
 
-    <div id="cart">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-            <h3 style="font-size:24px; font-weight:600;">🛒 Корзина <span id="cart-count" style="background:#00ff9d; color:#000; font-size:13px; padding:4px 14px; border-radius:9999px;">0</span></h3>
-            <button onclick="clearCart()" style="color:#f87171; background:none; border:none;">Очистить</button>
+    <div class="hero">
+        <div class="hero-badge animate-pulse">
+            <div class="hero-badge-dot"></div>
+            Пока не работает • Сервис доставки товара по серверу Sakeva
         </div>
-        <div id="cart-list"></div>
-        <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:16px;">
-                <span style="color:#94a3b8;">Итого</span>
-                <span id="total-price" style="font-size:32px; font-weight:700; color:#00ff9d;">0 АРЫ</span>
+        <p style="font-size:20px; color:#94a3b8; margin-top: 20px; animation: slideUp 1s ease-out;">Плати Арами → Получай вещи</p>
+    </div>
+
+    <div class="main-container">
+        <div class="products-section">
+            <div class="filter-container">
+                <input type="text" id="filterInput" class="filter-input" placeholder="🔍 Поиск товара по названию или категории...">
             </div>
-            <button onclick="openModal()" class="order-btn">ОФОРМИТЬ ЗАКАЗ</button>
+            
+            <div id="products"></div>
+        </div>
+
+        <div id="cart">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                <h3 style="font-size:24px; font-weight:600;">🛒 Корзина <span id="cart-count" style="background:#00ff9d; color:#000; font-size:13px; padding:4px 14px; border-radius:9999px;">0</span></h3>
+                <button onclick="clearCart()" style="color:#f87171; background:none; border:none; cursor:pointer;">Очистить</button>
+            </div>
+            <div id="cart-list"></div>
+            <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:16px;">
+                    <span style="color:#94a3b8;">Итого</span>
+                    <span id="total-price" style="font-size:32px; font-weight:700; color:#00ff9d;">0 АРЫ</span>
+                </div>
+                <button onclick="openModal()" class="order-btn">ОФОРМИТЬ ЗАКАЗ</button>
+            </div>
         </div>
     </div>
-</div>
 
     <div id="modal">
         <div class="modal-content">
             <div style="display:flex; justify-content:space-between; margin-bottom:24px;">
                 <h3 style="font-size:24px;">Оформление заказа</h3>
-                <button onclick="closeModal()" style="font-size:32px; color:#64748b;">×</button>
+                <button onclick="closeModal()" style="font-size:32px; color:#64748b; background:none; border:none; cursor:pointer;">×</button>
             </div>
             <form id="order-form" onsubmit="submitOrder(event)">
                 <label>Никнейм в Minecraft</label>
@@ -91,50 +88,69 @@
     </footer>
 
     <script>
-        
-function filterProducts() {
-    const filterValue = document.getElementById('filterInput').value.toLowerCase();
-    const container = document.getElementById('products');
-    container.innerHTML = '';
-    
-    // Фильтруем товары по названию или категории
-    const filtered = products.filter(p => 
-        p.name.toLowerCase().includes(filterValue) || 
-        p.category.toLowerCase().includes(filterValue)
-    );
-    
-    if (filtered.length === 0) {
-        container.innerHTML = '<div style="color:#64748b; padding:40px; text-align:center;">Товары не найдены 😞</div>';
-        return;
-    }
-    
-    filtered.forEach((p, i) => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-            <div class="product-image">
-                <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300x220/111827/00ff9d?text=${encodeURIComponent(p.name)}'">
-            </div>
-            <div class="product-info">
-                <div style="font-size:12px; color:#00ff9d; margin-bottom:8px;">${p.category}</div>
-                <h3>${p.name}</h3>
-                <div style="display:flex;justify-content:space-between;align-items:baseline;">
-                    <span class="price">${p.price}</span>
-                    <span style="color:#64748b;font-size:14px;">АРЫ</span>
-                </div>
-                <button onclick="addToCart(${i})" class="add-btn">Добавить в корзину</button>
-            </div>
-        `;
-        container.appendChild(card);
-    });
-}
+        // ТОВАРЫ С ОПИСАНИЯМИ
+        const products = [
+            { id:1, name:"Железные блоки x64", price:1, category:"Строительство", image:"https://ru.minecraft.wiki/images/Железный_блок_JE4_BE3.png?41bce", description:"Отличный материал для строительства. Прочный и красивый блок." },
+            { id:2, name:"Смолянные блоки x128", price:1, category:"Строительство", image:"https://minecraft.wiki/images/Block_of_Resin_JE1_BE1.png?e9586", description:"Новый блок из смолы. Идеален для декорирования построек." },
+            { id:3, name:"Проворство III", price:24, category:"Зачарования", image:"https://minecraft.wiki/images/Netherite_Boots_%28item%29_BE1.png?b8363&format=original", description:"Мощное зачарование для быстрого передвижения и боевых действий." },
+            { id:4, name:"Книга", price:2, category:"Ресурсы", image:"https://minecraft.wiki/images/Book_JE2_BE2.png?caac6", description:"Обычная книга для описания и украшения." },
+            { id:5, name:"Пластинка", price:1, category:"Ресурсы", image:"https://minecraft.wiki/images/thumb/Music_Disc_13_JE1_BE1.png/64px-Music_Disc_13_JE1_BE1.png?3ad74", description:"Музыкальный диск для проигрывателя. Создает атмосферу!" },
+            { id:6, name:"Кожа", price:1, category:"Ресурсы", image:"https://minecraft.wiki/images/Leather_JE2_BE2.png?10fae", description:"Ценный ресурс для крафта брони и других предметов." },
+            { id:7, name:"Факел Душ", price:3, category:"Ресурсы", image:"https://minecraft.wiki/images/Soul_Torch.gif?49a46", description:"Редкий декоративный элемент с фиолетовым свечением." },
+            { id:8, name:"Незерит", price:20, category:"Ресурсы", image:"https://minecraft.wiki/images/Netherite_Ingot_JE1_BE2.png?79364", description:"Самый ценный ресурс в игре. Используется для лучшей брони и инструментов." }
+        ];
 
-// Добавь обработчик события для поиска в реальном времени
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('filterInput').addEventListener('keyup', filterProducts);
-    filterProducts();
-    renderCart();
-});
+        let cart = [];
+
+        function filterProducts() {
+            const filterValue = document.getElementById('filterInput').value.toLowerCase();
+            const container = document.getElementById('products');
+            container.innerHTML = '';
+            
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(filterValue) || 
+                p.category.toLowerCase().includes(filterValue)
+            );
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div style="color:#64748b; padding:40px; text-align:center;">Товары не найдены 😞</div>';
+                return;
+            }
+            
+            filtered.forEach((p, i) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${p.image}" alt="${p.name}" onerror="this.src='https://via.placeholder.com/300x220/111827/00ff9d?text=${encodeURIComponent(p.name)}'">
+                    </div>
+                    <div class="product-info">
+                        <div style="font-size:12px; color:#00ff9d; margin-bottom:8px;">${p.category}</div>
+                        <h3>${p.name}</h3>
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+                            <span class="price">${p.price}</span>
+                            <span style="color:#64748b;font-size:14px;">АРЫ</span>
+                        </div>
+                        <div style="display:flex; gap:10px; margin-top:12px;">
+                            <button onclick="goToProduct(${i})" class="view-btn">Подробнее</button>
+                            <button onclick="addToCart(${i})" class="add-btn">В корзину</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function goToProduct(index) {
+            localStorage.setItem('selectedProduct', index);
+            window.location.href = 'product.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('filterInput').addEventListener('keyup', filterProducts);
+            filterProducts();
+            renderCart();
+        });
 
         function addToCart(i) {
             const product = products[i];
@@ -174,12 +190,27 @@ document.addEventListener('DOMContentLoaded', function() {
             countEl.textContent = cart.length;
         }
 
-        function removeFromCart(i) { cart.splice(i, 1); renderCart(); }
-        function clearCart() { if (confirm('Очистить корзину?')) { cart = []; renderCart(); } }
-        function openModal() { if (cart.length === 0) return alert('Корзина пуста!'); document.getElementById('modal').style.display = 'flex'; }
-        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+        function removeFromCart(i) { 
+            cart.splice(i, 1); 
+            renderCart(); 
+        }
 
-        // === ВАЛИДАЦИЯ + КУЛДАУН + БАН ===
+        function clearCart() { 
+            if (confirm('Очистить корзину?')) { 
+                cart = []; 
+                renderCart(); 
+            } 
+        }
+
+        function openModal() { 
+            if (cart.length === 0) return alert('Корзина пуста!'); 
+            document.getElementById('modal').style.display = 'flex'; 
+        }
+
+        function closeModal() { 
+            document.getElementById('modal').style.display = 'none'; 
+        }
+
         async function submitOrder(e) {
             e.preventDefault();
 
@@ -214,7 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('orders', JSON.stringify(orders));
             localStorage.setItem('lastOrder', now);
 
-            // === DISCORD С КНОПКАМИ (реакциями) ===
             const itemsText = cart.map(item => `• ${item.name} ×${item.qty}`).join('\n');
             const totalAries = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
 
@@ -247,7 +277,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else alert('Ошибка отправки.');
         }
 
-        // === АДМИН-ПАНЕЛЬ ===
         function adminPanel() {
             const pass = prompt('Введите пароль:');
             if (pass === 'jokyadmin123') {
@@ -260,21 +289,8 @@ document.addEventListener('DOMContentLoaded', function() {
             } else alert('Неверный пароль!');
         }
 
-const products = [
-    { id:1, name:"Железные блоки x64", price:1, category:"Строительство", image:"https://ru.minecraft.wiki/images/Железный_блок_JE4_BE3.png?41bce" },
-    { id:2, name:"Смолянные блоки x128", price:1, category:"Строительство", image:"https://minecraft.wiki/images/Block_of_Resin_JE1_BE1.png?e9586" },
-    { id:3, name:"Проворство III", price:24, category:"Зачарования", image:"https://minecraft.wiki/images/Netherite_Boots_%28item%29_BE1.png?b8363&format=original"},
-    { id:4, name:"Книга", price:2, category:"Ресурсы", image:"https://minecraft.wiki/images/Book_JE2_BE2.png?caac6" },
-    { id:5, name:"Пластинка", price:1, category:"Ресурсы", image:"https://minecraft.wiki/images/thumb/Music_Disc_13_JE1_BE1.png/64px-Music_Disc_13_JE1_BE1.png?3ad74" },
-    { id:6, name:"Кожа", price:1, category:"Ресурсы", image:"https://minecraft.wiki/images/Leather_JE2_BE2.png?10fae" },
-    { id:7, name:"Факел Душ", price:3, category:"Ресурсы", image:"https://minecraft.wiki/images/Soul_Torch.gif?49a46" },
-    { id:8, name:"Незерит", price:20, category:"Ресурсы", image:"https://minecraft.wiki/images/Netherite_Ingot_JE1_BE2.png?79364" }
-];
-        
-let cart = [];
-
-filterProducts();
-renderCart();
+        filterProducts();
+        renderCart();
     </script>
 </body>
 </html>
