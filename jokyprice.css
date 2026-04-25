@@ -6,7 +6,7 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-    background: linear-gradient(135deg, #FFFFF 0%, #FFFFFF 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1a1f3a 50%, #0f172a 100%);
     color: #e0f2ff;
     font-family: 'Inter', system_ui, sans-serif;
     min-height: 100vh;
@@ -14,53 +14,133 @@ body {
 
 .logo-font { font-family: 'Space Grotesk', sans-serif; }
 
-header {
+.top-header {
     background: rgba(0,0,0,0.7);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    position: sticky; top:0; z-index:50;
+    padding: 16px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 
-.header-content {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.home-btn {
+    background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(255,0,85,0.1));
+    border: 2px solid rgba(0,212,255,0.3);
+    color: #e0f2ff;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
 }
 
-.logo-circle img {
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    object-fit: contain;
-    box-shadow: 0 0 40px rgba(0,212,255,0.8), 0 0 60px rgba(255,0,85,0.6);
+.home-btn:hover {
+    background: linear-gradient(135deg, #00d4ff, #ff0055);
+    color: #000;
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0,212,255,0.6), 0 0 20px rgba(255,0,85,0.4);
+    transform: translateY(-2px);
 }
 
 h1 { 
-    font-size: 36px; font-weight:700; letter-spacing:-2px; 
+    font-size: 36px; 
+    font-weight:700; 
+    letter-spacing:-2px; 
     text-shadow: 0 0 20px #00d4ff, 0 0 40px #ff0055, 0 0 60px rgba(0,212,255,0.5);
 }
 
-.hero { text-align:center; padding:60px 20px 40px; max-width:1280px; margin:0 auto; }
+.hero { 
+    text-align:center; 
+    padding:40px 20px 30px; 
+    max-width:1280px; 
+    margin:0 auto; 
+}
 
 .hero-badge {
-    display:inline-flex; align-items:center; gap:10px;
-    background:rgba(255,255,255,0.05); padding:8px 20px;
-    border-radius:9999px; font-size:14px; margin-bottom:16px;
+    display:inline-flex; 
+    align-items:center; 
+    gap:10px;
+    background:rgba(255,255,255,0.05); 
+    padding:8px 20px;
+    border-radius:9999px; 
+    font-size:14px; 
+    margin-bottom:16px;
 }
 
 .hero-badge-dot {
-    width:8px; height:8px; 
+    width:8px; 
+    height:8px; 
     background: linear-gradient(135deg, #00d4ff, #ff0055);
-    border-radius:50%; animation:pulse 2s infinite;
+    border-radius:50%; 
+    animation:pulse 2s infinite;
     box-shadow: 0 0 10px #00d4ff, 0 0 15px #ff0055;
 }
 
+.product-page-container {
+    max-width:1280px; 
+    margin:0 auto; 
+    padding:0 24px 40px;
+    display:grid; 
+    grid-template-columns:1fr 380px; 
+    gap:40px;
+}
+
+.product-detail {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:start;
+}
+
+.product-image-large {
+    background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(255,0,85,0.05));
+    border: 2px solid rgba(0,212,255,0.3);
+    border-radius: 24px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    position: sticky;
+    top: 100px;
+}
+
+.product-image-large img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-image-large:hover img {
+    transform: scale(1.05);
+}
+
+.product-details {
+    color: #e0f2ff;
+}
+
+.product-description {
+    background: rgba(0,212,255,0.05);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.product-description p {
+    margin: 0;
+}
+
 .main-container {
-    max-width:1280px; margin:0 auto; padding:0 24px;
-    display:grid; grid-template-columns:1fr 380px; gap:40px;
+    max-width:1280px; 
+    margin:0 auto; 
+    padding:0 24px;
+    display:grid; 
+    grid-template-columns:1fr 380px; 
+    gap:40px;
 }
 
 .products-section {
@@ -70,15 +150,19 @@ h1 {
 }
 
 #products {
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:20px;
+    display:grid; 
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); 
+    gap:20px;
 }
 
 .product-card {
     background: #1a1a2e;
-    border-radius:24px; overflow:hidden;
+    border-radius:24px; 
+    overflow:hidden;
     border:2px solid rgba(0,212,255,0.3);
     transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
     color: #e0f2ff;
+    cursor: pointer;
 }
 
 .product-card:hover {
@@ -91,58 +175,113 @@ h1 {
 .product-image {
     height:160px; 
     background: #f5e8c7;
-    display:flex; align-items:center; justify-content:center;
+    display:flex; 
+    align-items:center; 
+    justify-content:center;
     padding:16px;
 }
 
 .product-image img {
-    max-width:90%; max-height:90%; object-fit:contain;
+    max-width:90%; 
+    max-height:90%; 
+    object-fit:contain;
     transition:transform 0.4s ease;
 }
 
-.product-card:hover .product-image img { transform:scale(1.12); }
+.product-card:hover .product-image img { 
+    transform:scale(1.12); 
+}
 
 .product-info { 
     padding:16px; 
     color: #e0f2ff;
 }
 
+.product-info h3 {
+    margin: 8px 0 12px;
+    font-size: 16px;
+}
+
 .price { 
-    font-size:28px; font-weight:700; font-family:monospace; 
+    font-size:28px; 
+    font-weight:700; 
+    font-family:monospace; 
     color: #00d4ff;
     text-shadow: 0 0 10px #00d4ff, 0 0 20px rgba(255,0,85,0.3);
 }
 
 .add-btn {
-    margin-top:20px; width:100%; padding:16px;
+    padding:12px;
     background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(255,0,85,0.2));
     border: 2px solid rgba(0,212,255,0.3);
-    border-radius:16px; color:#e0f2ff; font-weight:600;
-    cursor:pointer; transition:all 0.3s;
+    border-radius:12px; 
+    color:#e0f2ff; 
+    font-weight:600;
+    cursor:pointer; 
+    transition:all 0.3s;
+    font-size: 14px;
 }
 
-.add-btn:hover { 
+.view-btn {
+    padding:12px;
+    background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(255,0,85,0.1));
+    border: 2px solid rgba(0,212,255,0.25);
+    border-radius:12px; 
+    color:#e0f2ff; 
+    font-weight:600;
+    cursor:pointer; 
+    transition:all 0.3s;
+    font-size: 14px;
+    flex: 1;
+}
+
+.add-btn:hover, .view-btn:hover { 
     background: linear-gradient(135deg, #00d4ff, #ff0055);
     color:#000; 
     transform:translateY(-2px);
     box-shadow: 0 0 20px rgba(0,212,255,0.6), 0 0 20px rgba(255,0,85,0.4);
+    border-color: #00d4ff;
 }
 
 #cart {
     background: #1a1a2e;
     border: 2px solid rgba(0,212,255,0.3);
     border-radius:28px;
-    padding:32px; position:sticky; top:32px;
+    padding:32px; 
+    position:sticky; 
+    top:100px;
     box-shadow: 0 0 30px rgba(0,212,255,0.5), 0 0 20px rgba(255,0,85,0.2);
     color: #e0f2ff;
 }
 
+#cart h3 {
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: rgba(0,212,255,0.05);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    animation: slideUp 0.3s ease-out;
+}
+
 .order-btn {
-    width:100%; padding:22px;
+    width:100%; 
+    padding:22px;
     background: linear-gradient(90deg, #00d4ff, #ff0055);
-    color:#fff; font-weight:700; font-size:18px;
-    border:none; border-radius:20px; cursor:pointer;
+    color:#fff; 
+    font-weight:700; 
+    font-size:18px;
+    border:none; 
+    border-radius:20px; 
+    cursor:pointer;
     box-shadow: 0 0 20px rgba(0,212,255,0.6), 0 0 20px rgba(255,0,85,0.4);
+    transition: all 0.3s;
 }
 
 .order-btn:hover { 
@@ -151,34 +290,63 @@ h1 {
 }
 
 #modal {
-    position:fixed; inset:0; background:rgba(0,0,0,0.85);
-    backdrop-filter:blur(12px); display:none;
-    align-items:center; justify-content:center; z-index:9999;
+    position:fixed; 
+    inset:0; 
+    background:rgba(0,0,0,0.85);
+    backdrop-filter:blur(12px); 
+    display:none;
+    align-items:center; 
+    justify-content:center; 
+    z-index:9999;
 }
 
 .modal-content {
-    background:#0f172a; border-radius:28px; width:100%;
-    max-width:460px; margin:20px; padding:32px;
+    background:#0f172a; 
+    border-radius:28px; 
+    width:100%;
+    max-width:460px; 
+    margin:20px; 
+    padding:32px;
     border: 2px solid rgba(0,212,255,0.3);
     box-shadow: 0 0 30px rgba(0,212,255,0.4), 0 0 20px rgba(255,0,85,0.2);
+    animation: scaleIn 0.4s ease-out;
 }
 
 input, textarea {
-    width:100%; padding:16px 20px; background:#1e2937;
-    border:1px solid rgba(255,255,255,0.1); border-radius:16px;
-    color:white; font-size:16px;
+    width:100%; 
+    padding:16px 20px; 
+    background:#1e2937;
+    border:1px solid rgba(255,255,255,0.1); 
+    border-radius:16px;
+    color:white; 
+    font-size:16px;
+    margin-top: 8px;
 }
 
 input:focus, textarea:focus { 
     border-color: #00d4ff;
     box-shadow: 0 0 15px rgba(0,212,255,0.4), 0 0 10px rgba(255,0,85,0.2);
+    outline: none;
 }
 
-label { display:block; margin-bottom:8px; font-size:14px; color:#94a3b8; }
+label { 
+    display:block; 
+    margin-bottom:0px; 
+    font-size:14px; 
+    color:#94a3b8; 
+}
 
-footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
+footer { 
+    text-align:center; 
+    padding:40px 20px; 
+    color:#64748b; 
+    margin-top:80px; 
+}
 
-@keyframes pulse { 0%,100% {opacity:1} 50% {opacity:0.4} }
+@keyframes pulse { 
+    0%,100% {opacity:1} 
+    50% {opacity:0.4} 
+}
 
 /* Фильтр */
 .filter-container {
@@ -211,7 +379,6 @@ footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
 
 /* ==================== АНИМАЦИИ ==================== */
 
-/* Слайд вверх */
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -223,7 +390,6 @@ footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
     }
 }
 
-/* Плавное появление */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -233,17 +399,6 @@ footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
     }
 }
 
-/* Пульсирование */
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.6;
-    }
-}
-
-/* Масштабирование при появлении */
 @keyframes scaleIn {
     from {
         opacity: 0;
@@ -255,7 +410,6 @@ footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
     }
 }
 
-/* Сияние */
 @keyframes glow {
     0%, 100% {
         box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
@@ -265,17 +419,6 @@ footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
     }
 }
 
-/* Подвижные звёзды */
-@keyframes twinkle {
-    0%, 100% {
-        opacity: 0.3;
-    }
-    50% {
-        opacity: 1;
-    }
-}
-
-/* Вибрация при наведении */
 @keyframes wiggle {
     0%, 100% {
         transform: rotate(0deg);
@@ -288,57 +431,14 @@ footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
     }
 }
 
-/* ==================== ПРИМЕНЕНИЕ АНИМАЦИЙ ==================== */
-
-/* Шапка */
-.hero-banner {
-    margin-bottom: 30px;
-    animation: slideUp 1s ease-out;
-}
-
-.banner-img {
-    width: 100%;
-    max-width: 800px;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3), 0 0 40px rgba(255, 0, 85, 0.2);
-    animation: glow 3s ease-in-out infinite;
-    transition: transform 0.3s ease;
-}
-
-.banner-img:hover {
-    transform: scale(1.02);
-}
-
-/* Бэйдж с анимацией */
-.hero-badge {
-    animation: slideUp 1s ease-out 0.2s both;
-}
-
 .animate-pulse {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Карточки товаров - появление */
 .product-card {
     animation: scaleIn 0.5s ease-out;
 }
 
-.product-card:nth-child(1) { animation-delay: 0.05s; }
-.product-card:nth-child(2) { animation-delay: 0.1s; }
-.product-card:nth-child(3) { animation-delay: 0.15s; }
-.product-card:nth-child(4) { animation-delay: 0.2s; }
-.product-card:nth-child(5) { animation-delay: 0.25s; }
-.product-card:nth-child(6) { animation-delay: 0.3s; }
-.product-card:nth-child(7) { animation-delay: 0.35s; }
-.product-card:nth-child(8) { animation-delay: 0.4s; }
-
-/* Плавное появление при добавлении в корзину */
-.cart-item {
-    animation: slideUp 0.3s ease-out;
-}
-
-/* Кнопка с эффектом при нажатии */
 .add-btn {
     transition: all 0.3s ease;
 }
@@ -348,21 +448,14 @@ footer { text-align:center; padding:40px 20px; color:#64748b; margin-top:80px; }
     animation: wiggle 0.3s ease;
 }
 
-/* Фильтр */
 .filter-input {
     animation: slideUp 0.8s ease-out;
-}
-
-/* Заголовок */
-h1 {
-    animation: slideUp 1s ease-out;
 }
 
 h3 {
     animation: slideUp 0.6s ease-out;
 }
 
-/* Price с свечением */
 .price {
     transition: all 0.3s ease;
 }
@@ -371,21 +464,6 @@ h3 {
     animation: glow 1s ease-in-out infinite;
 }
 
-/* Модальное окно */
-#modal {
-    animation: fadeIn 0.3s ease-out;
-}
-
-.modal-content {
-    animation: scaleIn 0.4s ease-out;
-}
-
-/* Корзина */
-#cart {
-    animation: slideUp 1.2s ease-out;
-}
-
-/* Пульс при обновлении корзины */
 @keyframes cartPulse {
     0% {
         transform: scale(1);
@@ -404,39 +482,30 @@ h3 {
 
 /* Адаптив для мобильных */
 @media (max-width: 768px) {
-    .banner-img {
-        max-width: 100%;
-        border-radius: 12px;
+    .product-page-container,
+    .main-container {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .product-detail {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image-large {
+        min-height: 300px;
+        position: static;
+    }
+
+    #cart {
+        position: static;
     }
 
     .product-card {
         animation-duration: 0.3s;
     }
-}
 
-
-.top-header-image {
-    text-align: center;
-    background: #000000;
-    padding: 20px 0 10px;
-}
-
-
-.top-header-image {
-    text-align: center;
-    background: #000000;
-    padding: 20px 0 10px;
-    border-bottom: 2px solid rgba(255,255,255,0.08); 
-}
-
-.header-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0;
-    box-shadow: none;              
-    transition: none;                    
-}
-
-.header-img:hover {
-    transform: none;                 
+    h1 {
+        font-size: 28px;
+    }
 }
